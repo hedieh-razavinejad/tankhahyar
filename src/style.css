@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: #050d1f;
+  color: #fff;
+}
+
+/* انیمیشن بیرون آمدن رسید از کارت */
+@keyframes feed {
+  from { clip-path: inset(0 0 100% 0); transform: translateY(-70px); }
+  to { clip-path: inset(0 0 0 0); transform: translateY(0); }
+}
+
+.fade-enter-active, .fade-leave-active { transition: opacity .25s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+@layer components {
+  /* ---------- کارت و تیتر ---------- */
+  .card { @apply rounded-3xl border border-beige-500 bg-navy-900/70 backdrop-blur; }
+  .card-title { @apply flex items-center gap-2 text-lg font-bold text-beige-300; }
+  .card-shadow { box-shadow: 4px 4px 0 0 theme('colors.beige.600'); }
+  .glow { box-shadow: 0 0 24px theme('colors.beige.400 / 0.4'); }
+  .beige-line { @apply h-0.5 w-full rounded-full bg-gradient-to-l from-transparent via-beige-400 to-transparent; }
+
+  /* ---------- دکمه ---------- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-navy-950 bg-gradient-to-l from-beige-500 to-beige-300 font-bold text-navy-950 shadow-[3px_3px_0_0_#050d1f] transition hover:brightness-110 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none;
+  }
+
+  /* ---------- آیکون ---------- */
+  .ico { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-box { @apply flex shrink-0 items-center justify-center rounded-xl text-navy-950; }
+  .grad-beige { @apply bg-gradient-to-br from-beige-300 to-beige-600; }
+
+  /* ---------- فرم رسید ---------- */
+  .feed { animation: feed 1s cubic-bezier(.2, .8, .2, 1) both; }
+  .zigzag {
+    height: 10px;
+    background: linear-gradient(135deg, transparent 5px, #fafafa 0) 0 0 / 10px 10px,
+                linear-gradient(225deg, transparent 5px, #fafafa 0) 0 0 / 10px 10px;
+    transform: scaleY(-1);
+  }
+  .slot { box-shadow: inset 0 4px 8px rgba(0, 0, 0, .9); }
+  .shine { background: linear-gradient(115deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, .12) 50%, rgba(255, 255, 255, 0) 70%); }
+
+  .field-label { @apply flex items-center gap-1.5 font-sans text-xs text-zinc-500; }
+  .field-input { @apply mt-1 w-full border-b-2 border-dashed border-zinc-300 bg-transparent py-2 text-sm outline-none transition focus:border-beige-500; }
+
+  /* سلکتور توضیحات (منوی کشویی) */
+  .select-btn { @apply mt-1 flex w-full items-center justify-between gap-2 rounded-xl border border-zinc-300 bg-white px-3 py-2.5 font-sans text-sm transition hover:border-beige-600; }
+  .select-list { @apply absolute inset-x-0 top-full z-20 mt-1 overflow-hidden rounded-xl border border-beige-500 bg-white shadow-[3px_3px_0_0_#c9b595]; }
+  .select-item { @apply flex w-full items-center gap-2 px-3 py-2 text-right font-sans text-sm text-navy-900 transition hover:bg-beige-200; }
+
+  /* ---------- سایدبار ---------- */
+  .soon-badge { @apply flex items-center gap-1 rounded-full bg-navy-800 px-2 py-0.5 text-xs; }
+}
